@@ -4,6 +4,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.string :sender, null: false
       t.string :receiver, null: false
       t.float :amount, null: false
+
       t.timestamps
     end
   end
