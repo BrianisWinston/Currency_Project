@@ -1,4 +1,7 @@
 class Api::V1::SessionsController < ApplicationController
+  def new
+  end
+
   def create
     @user = User.find_by_credentials(
       params[:user][:username],
@@ -7,9 +10,10 @@ class Api::V1::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render "api/users/show"
+      # redirect_to
     else
-      render json: ["The username/password you entered doesn't belong to an account. Please check and try again."], status: 401
+      flash.now[:errors] = "The username/password you entered doesn't belong to an account. Please check and try again."
+      render :new
     end
   end
 
@@ -17,9 +21,9 @@ class Api::V1::SessionsController < ApplicationController
     @user = current_user
     if @user
       logout
-      render "api/users/show"
+      # redirect_to
     else
-      render json: ["Nobody signed in"], status: 404
+      flash.now[:errors] = "Nobody signed in"
     end
   end
 end
