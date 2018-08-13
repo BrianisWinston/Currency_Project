@@ -1,7 +1,14 @@
 <ul>
   <% @transactions.each do |transaction| %>
     <li>
-      <h4>Sender: <%= transaction.sender %> Receiver: <%= transaction.receiver %> Amount: <%= transaction.amount %> </h4>
+      <h4>
+        Sender: <%= transaction.sender %>
+        Receiver: <%= transaction.receiver %>
+        Amount: <%= transaction.amount %>
+        Created: <%= transaction.created_at %>
+      </h4>
     </li>
   <% end %>
 </ul>
+
+<a href="<%= api_v1_users_url %>">Home Page</a>

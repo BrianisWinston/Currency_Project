@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to api_session_url unless logged_in?
+    redirect_to api_v1_session_url unless logged_in?
   end
 
   def transfer_logic(receiver_id, amount)

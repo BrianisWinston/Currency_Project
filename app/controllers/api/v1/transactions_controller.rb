@@ -1,4 +1,5 @@
 class Api::V1::TransactionsController < ApplicationController
+
   def index
     @transactions = Transaction.all
   end
@@ -9,7 +10,7 @@ class Api::V1::TransactionsController < ApplicationController
     @transaction.receiver = User.find(params[:transaction][:receiver_id]).username
     transfer_logic(params[:transaction][:receiver_id], @transaction.amount)
     @transaction.save
-    redirect_to api_v1_users_url
+    redirect_to api_v1_transactions_url
   end
 
   private
