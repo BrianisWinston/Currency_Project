@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      #redirect_to
+      redirect_to api_v1_users_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
