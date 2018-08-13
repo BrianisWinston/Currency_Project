@@ -1,4 +1,8 @@
 class Api::V1::UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -16,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  
+
 
   private
 
