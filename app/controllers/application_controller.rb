@@ -25,11 +25,12 @@ class ApplicationController < ActionController::Base
     redirect_to api_session_url unless logged_in?
   end
 
-  def sender_logic(sender, amount)
+  def transfer_logic(receiver_id, amount)
+    receiver = User.find(receiver_id)
+    sender = current_user
     sender.credits -= amount
-  end
-
-  def receiver_logic(receiver, amount)
     receiver.credits += amount
+    sender.save
+    receiver.save
   end
 end
