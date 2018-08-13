@@ -1,1 +1,5 @@
 <h2>Users:</h2>
+<% @users.each do |user| %>
+  <%= user.username %>
+  <%= user.credits %>
+<% end %>
