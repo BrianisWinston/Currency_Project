@@ -1,0 +1,7 @@
+<ul>
+  <% @transactions.each do |transaction| %>
+    <li>
+      <h4>Sender: <%= transaction.sender %> Receiver: <%= transaction.receiver %> Amount: <%= transaction.amount %> </h4>
+    </li>
+  <% end %>
+</ul>

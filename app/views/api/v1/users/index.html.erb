@@ -9,8 +9,11 @@
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
             <label>
-              <input type="text" name="" value="" placeholder="Amount to send...">
+              <input type="text" name="transaction[amount]" value="" placeholder="Amount to send...">
             </label>
+
+            <input type="hidden" name="transaction[receiver_id]" value="<%= user.id %>">
+
 
             <label>
               <input type="submit" name="" value="Send Credits">
