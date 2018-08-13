@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to api_session_url unless logged_in?
   end
+
+  def sender_logic(sender, amount)
+    sender.credits -= amount
+  end
+
+  def receiver_logic(receiver, amount)
+    receiver.credits += amount
+  end
 end
