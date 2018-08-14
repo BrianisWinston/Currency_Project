@@ -20,6 +20,11 @@ class Api::V1::TransactionsController < ApplicationController
     end
   end
 
+  def current
+    @current = User.find(params[:id])
+    render :current
+  end
+
   private
 
   def transaction_params

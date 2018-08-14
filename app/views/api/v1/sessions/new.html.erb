@@ -1,17 +1,21 @@
-<a href="<%= new_api_v1_user_url %>">Sign Up</a>
-<h2>Login</h2>
-<form action="<%= api_v1_session_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<% if logged_in? %>
+  <%= controller.redirect_to api_v1_users_url %>
+<% else %>
+  <a href="<%= new_api_v1_user_url %>">Sign Up</a>
+  <h2>Login</h2>
+  <form action="<%= api_v1_session_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>
-    Username
-    <input type="text" name="user[username]" value="">
-  </label>
+    <label>
+      Username
+      <input type="text" name="user[username]" value="">
+    </label>
 
-  <label>
-    Password
-    <input type="password" name="user[password]" value="">
-  </label>
+    <label>
+      Password
+      <input type="password" name="user[password]" value="">
+    </label>
 
-  <input type="submit" name="" value="Login">
-</form>
+    <input type="submit" name="" value="Login">
+  </form>
+<% end %>
