@@ -1,10 +1,15 @@
 class Api::V1::TransactionsController < ApplicationController
+  #Ensure user is logged in before a transaction is created
   before_action :require_login
 
+  #Put all transactions in instance variable for views to manipulate
   def index
     @transactions = Transaction.all
   end
 
+  #Create a transaction variable with whitelisted values from view,
+  #have if statement to handle logic depending on amount of credits
+  #for transaction
   def create
     @transaction = Transaction.new(transaction_params)
     if @transaction.amount < 0
@@ -24,6 +29,7 @@ class Api::V1::TransactionsController < ApplicationController
 
   private
 
+  #Keep code organized and hide params logic for best controller practice
   def transaction_params
     params.require(:transaction).permit(:amount)
   end
