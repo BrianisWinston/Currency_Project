@@ -2,24 +2,26 @@
   <h2>Members:</h2>
   <ul>
     <% @users.each do |user| %>
-        <%= user.username %>
-        <%= user.credits %>
-        <% unless user.username == current_user.username %>
-          <form action="<%= api_v1_transactions_url %>" method="post">
-            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <li>
+          <%= user.username %>
+          <%= user.credits %>
+          <% unless user.username == current_user.username %>
+            <form action="<%= api_v1_transactions_url %>" method="post">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-            <label>
-              <input type="text" name="transaction[amount]" value="" placeholder="Amount to send...">
-            </label>
+              <label>
+                <input type="text" name="transaction[amount]" value="" placeholder="Amount to send...">
+              </label>
 
-            <input type="hidden" name="transaction[receiver_id]" value="<%= user.id %>">
+              <input type="hidden" name="transaction[receiver_id]" value="<%= user.id %>">
 
 
-            <label>
-              <input type="submit" name="" value="Send Credits">
-            </label>
-          </form>
-        <% end %>
+              <label>
+                <input type="submit" name="" value="Send Credits">
+              </label>
+            </form>
+          <% end %>
+        </li>
     <% end %>
   </ul>
   </br>

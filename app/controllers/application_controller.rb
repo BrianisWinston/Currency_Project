@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
     sender.credits -= amount
     receiver.credits += amount
     sender.save
+    login(sender)
     receiver.save
   end
 end

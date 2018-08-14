@@ -22,12 +22,14 @@
       </form>
     <% end %>
 
-    <% if flash[:errors] %>
+    <% if flash[:errors] && flash[:errors].kind_of?(Array) %>
       <% flash[:errors].each do |error| %>
         <%= error %>
       <% end %>
+    <% elsif flash[:errors] %>
+      <%= flash[:errors] %>
     <% end %>
-
+    <br>
     <%= yield %>
   </body>
 </html>
