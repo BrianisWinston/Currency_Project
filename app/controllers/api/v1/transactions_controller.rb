@@ -6,16 +6,18 @@ class Api::V1::TransactionsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @transaction = Transaction.new(transaction_params)
-    @transaction.sender = current_user.username
-    @transaction.receiver = User.find(params[:transaction][:receiver_id]).username
-    transfer_logic(params[:transaction][:receiver_id], @transaction.amount)
-    puts @transaction.sender
-    puts @transaction.receiver
-    puts @transaction.amount
-    @transaction.save
-    redirect_to api_v1_transactions_url
+    if @transaction.amount < current_user.credits
+      @transaction.sender = current_user.username
+      @transaction.receiver = User.find(params[:transaction][:receiver_id]).username
+      transfer_logic(params[:transaction][:receiver_id], @transaction.amount)
+      @transaction.save
+      redirect_to api_v1_transactions_url
+    else
+      login(current_user)
+      flash[:errors] = "You do not have enough credits to send. Please check and try again."
+      redirect_to api_v1_users_url
+    end
   end
 
   private
