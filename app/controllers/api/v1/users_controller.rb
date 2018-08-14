@@ -20,7 +20,9 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-
+  def current
+    @current = User.find(current_user.id)
+  end
 
   private
 
