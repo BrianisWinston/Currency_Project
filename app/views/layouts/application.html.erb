@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <!--  If statement to dislpay user if logged in and display logout
+          logic and link. logged_in? is able to be used by way of the
+          helper_method in the application controller -->
     <% if logged_in? %>
       <h3>User:</h3>
       <%= current_user.username %>
@@ -22,6 +25,8 @@
       </form>
     <% end %>
 
+    <!--  If statement to display errors depending on length of error by
+          way of rails flash hash -->
     <% if flash[:errors] && flash[:errors].kind_of?(Array) %>
       <% flash[:errors].each do |error| %>
         <%= error %>

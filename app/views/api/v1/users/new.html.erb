@@ -1,11 +1,18 @@
+<!--  If statement to display Sign In page or redirect to home/index page
+      depending if user is logged in -->
 <% if logged_in? %>
   <%= controller.redirect_to api_v1_users_url %>
 <% else %>
+  <!-- Link to sing in a user -->
   <a href="<%= new_api_v1_session_url %>">Sign In</a>
   <h2>Sign Up</h2>
   <form action="<%=api_v1_users_url%>" method="post">
+    <!--  Everytime there is a form an authenticity token should be
+          provided to ensure the rails backend continues to protect
+          the application from CSRF attacks -->
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
+    <!-- Input for signing up a user -->
     <label>
       Username
       <input type="text" name="user[username]" value="">

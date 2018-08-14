@@ -1,8 +1,12 @@
+<!-- If statement to show all transactions or redirect to sign up page -->
 <% if logged_in? %>
   <ul>
+    <!--  Grab all transactions variable from the transaction controller
+          index method -->
     <% @transactions.each do |transaction| %>
       <li>
         <h4>
+          <!-- Display attributes of one transaction -->
           Sender: <%= transaction.sender %>
           Receiver: <%= transaction.receiver %>
           Amount: <%= transaction.amount %>
@@ -12,7 +16,9 @@
     <% end %>
   </ul>
 
+  <!-- Link to index/home page -->
   <a href="<%= api_v1_users_url %>">Home Page</a>
 <% else %>
+  <!-- Redirect to sign up page if not logged in -->
   <%= controller.redirect_to new_api_v1_user_url %>
 <% end %>
