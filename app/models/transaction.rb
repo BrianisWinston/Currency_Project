@@ -11,6 +11,6 @@
 #
 
 class Transaction < ApplicationRecord
-    validates :sender, :receiver, :amount, presence: true
-
+  #Make sure all attributes are present to prevent database crash
+  validates :sender, :receiver, :amount, presence: true
 end
