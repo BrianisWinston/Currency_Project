@@ -13,5 +13,4 @@
 class Transaction < ApplicationRecord
     validates :sender, :receiver, :amount, presence: true
 
-    belongs_to :user
 end
